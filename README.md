@@ -9,7 +9,7 @@ DOI: 10.1021/ci034243x
 To use run the codes, one may clone the repository using the following command in the terminal
 
 ```
-git clone https://github.com/sherwin97/DL-Project---Predicting-solubility.git
+$ git clone https://github.com/sherwin97/DL-Project---Predicting-solubility.git
 ```
 
 This repository consists of 4 folders and 1 txt file. 
@@ -27,18 +27,18 @@ This repository consists of 4 folders and 1 txt file.
     1. process_data.py takes in the path of SMILES data and return a csv of features into the data_csv folder. 
     To run the code, one may type the following into the terminal:
     ```
-    python ./python_scripts/process_data.py --path_smiles ./data_csv/smiles.csv --path_features ./data_csv/features.csv
+    $ python ./python_scripts/process_data.py --path_smiles ./data_csv/smiles.csv --path_features ./data_csv/features.csv
     ```
     2. training_model.py takes in the path of features and solubility. Then user may define their test size and random state for seeding. Else the default would be 0.2 for test size and 123 for random state. Next, user may specify the number of features, number of hidden layers, size of hidden layer, and the path to save the trained model. 
     To run the code, one may type the following into the terminal:
     ```
-    python ./python_scripts/training_model.py --path_features ./data_csv/features.csv --path_solubility ./data_csv/solubility.csv --test_size 0.2 --random_state 123 --n_features 5 --num_hidden layers 3 --hidden_layer_size 20 --path_to_trained_model ./trained_model/trained_linear_model.pt
+    $ python ./python_scripts/training_model.py --path_features ./data_csv/features.csv --path_solubility ./data_csv/solubility.csv --test_size 0.2 --random_state 123 --n_features 5 --num_hidden layers 3 --hidden_layer_size 20 --path_to_trained_model ./trained_model/trained_linear_model.pt
     ```
 
     3. prediction.py allow user to load in the trained model and the predict the solubility of specific molecules given its molecular descriptors. Do note that the n_features, num_hidden_layers and size_hidden_layers should be the same as the trained model. A csv of predicted solubility will be returned in the data_csv folder. 
     To run the code, one may type the following into the terminal. 
     ```
-    python ./python_scripts/prediction.py --path_features ./data_csv/features.csv --n_features 5 --num_hidden_layers 3 --size_hidden_layer 20 --path_to_trained_model ./trained_model/trained_linear_model.pt -- ./data_csv/pred_sol.csv
+    $ python ./python_scripts/prediction.py --path_features ./data_csv/features.csv --n_features 5 --num_hidden_layers 3 --size_hidden_layer 20 --path_to_trained_model ./trained_model/trained_linear_model.pt -- ./data_csv/pred_sol.csv
     ```
 
 4. requirements.txt specify the version information for the codes to function properly. 
