@@ -5,6 +5,7 @@ import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 
+
 def AromaticAtoms(m):
     """
     Take in an rdkit object, obtain the number of aromatic atoms in a molecule
@@ -22,12 +23,14 @@ def AromaticAtoms(m):
     return sum_aa_count
 
 
-def molecular_desc(smiles, output):
+def molecular_desc(path_smiles, path_features):
     """
     Load csv containing smiles. Convert str to rdkit object and obtain MolLogP, MolWt, NumRotBonds, TPSA and AromaticProp.
     return df 
     """
-    smiles_list = [item for item in open(smiles).read().replace("\n", ",").split(",")]
+    smiles_list = [
+        item for item in open(path_smiles).read().replace("\n", ",").split(",")
+    ]
     mol_list = [Chem.MolFromSmiles(mol) for mol in smiles_list]
 
     mol_MolLogP_list = [Descriptors.MolLogP(mol) for mol in mol_list]
@@ -47,13 +50,16 @@ def molecular_desc(smiles, output):
         }
     )
 
-    return df.to_csv(output, index=False)
+    return df.to_csv(path_features, index=False)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--smiles", help="Enter the file path containing SMILES")
-    parser.add_argument("--output", help="Enter the file path to save output file")
+    parser.add_argument("--path_smiles", help="Enter the file path containing SMILES")
+    parser.add_argument(
+        "--path_features", help="Enter the file path to save output file"
+    )
 
     args = parser.parse_args()
 
-    molecular_desc(args.smiles, args.output)
+    molecular_desc(args.path_smiles, args.path_features)

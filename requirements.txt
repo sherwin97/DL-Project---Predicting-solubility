@@ -1,0 +1,8 @@
+argparse==1.1
+numpy==1.21.5
+pandas==1.4.2
+python==3.9.12
+rdkit==2022.03.4
+torch==1.21.1
+sklearn==1.0.2
+
